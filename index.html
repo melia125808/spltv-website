@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator SPLTV</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      color: #fff;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      padding: 24px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+    }
+ .row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* RESPONSIVE HP */
+@media (max-width: 480px) {
+  .card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  input {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+    .btn:hover { transform: scale(1.03); }
+    .result {
+      margin-top: 16px;
+      background: rgba(0,0,0,0.25);
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+    .footer {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+    .logo {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.logo img {
+  width: 80px;
+  max-width: 100%;
+}
+
+  </style>
+</head>
+<body>
+  <div class="card">
+      <div class="logo">
+  <img src="logosmkmu.html" alt="Logo Sekolah">
+</div>
+
+    <h1>Sistem Persamaan Linear<br>3 Variabel</h1>
+    
+<div class="result" id="hasil">Masukkan koefisien lalu klik hitung</div>
+
+    <div class="row">
+      <input id="a1" placeholder="a1">
+      <input id="b1" placeholder="b1">
+      <input id="c1" placeholder="c1">
+      <input id="d1" placeholder="d1">
+    </div>
+    <div class="row">
+      <input id="a2" placeholder="a2">
+      <input id="b2" placeholder="b2">
+      <input id="c2" placeholder="c2">
+      <input id="d2" placeholder="d2">
+    </div>
+    <div class="row">
+      <input id="a3" placeholder="a3">
+      <input id="b3" placeholder="b3">
+      <input id="c3" placeholder="c3">
+      <input id="d3" placeholder="d3">
+    </div>
+
+    <button class="btn" onclick="hitung()">Hitung</button>
+
+<hr style="margin:16px 0; opacity:0.3">
+<div class="result" id="hasilEkspresi">
+  Masukkan persamaan baru
+</div>
+
+<div class="row">
+  <input id="px" placeholder="koef x (mis. 3)">
+  <input id="py" placeholder="koef y (mis. 4)">
+  <input id="pz" placeholder="koef z (mis. 5)">
+</div>
+
+<button class="btn" onclick="hitungEkspresi()">
+  Hitung Persamaan Baru
+</button>
+
+    <div class="footer">Metode Deterima Kelompok 11, XII TKJ 1</div>
+  </div>
+
+<script>
+function hitung() {
+  const a1 = Number(document.getElementById("a1").value);
+  const b1 = Number(document.getElementById("b1").value);
+  const c1 = Number(document.getElementById("c1").value);
+  const d1 = Number(document.getElementById("d1").value);
+
+  const a2 = Number(document.getElementById("a2").value);
+  const b2 = Number(document.getElementById("b2").value);
+  const c2 = Number(document.getElementById("c2").value);
+  const d2 = Number(document.getElementById("d2").value);
+
+  const a3 = Number(document.getElementById("a3").value);
+  const b3 = Number(document.getElementById("b3").value);
+  const c3 = Number(document.getElementById("c3").value);
+  const d3 = Number(document.getElementById("d3").value);
+
+  const D  = a1*(b2*c3-b3*c2) - b1*(a2*c3-a3*c2) + c1*(a2*b3-a3*b2);
+  if (D === 0) {
+    document.getElementById("hasil").innerHTML = "Tidak ada solusi unik";
+    return;
+  }
+
+  const Dx = d1*(b2*c3-b3*c2) - b1*(d2*c3-d3*c2) + c1*(d2*b3-d3*b2);
+  const Dy = a1*(d2*c3-d3*c2) - d1*(a2*c3-a3*c2) + c1*(a2*d3-a3*d2);
+  const Dz = a1*(b2*d3-b3*d2) - b1*(a2*d3-a3*d2) + d1*(a2*b3-a3*b2);
+
+  // simpan hasil
+  window.xVal = Dx / D;
+  window.yVal = Dy / D;
+  window.zVal = Dz / D;
+
+  document.getElementById("hasil").innerHTML =
+    `x = ${window.xVal.toFixed(2)}<br>
+     y = ${window.yVal.toFixed(2)}<br>
+     z = ${window.zVal.toFixed(2)}`;
+}
+
+// hitung persamaan lanjutan
+function hitungEkspresi() {
+  if (window.xVal === undefined) {
+    document.getElementById("hasilEkspresi").innerHTML =
+      "Hitung SPLTV dulu ya";
+    return;
+  }
+
+  const px = Number(document.getElementById("px").value);
+  const py = Number(document.getElementById("py").value);
+  const pz = Number(document.getElementById("pz").value);
+
+  const hasil = px*window.xVal + py*window.yVal + pz*window.zVal;
+
+  document.getElementById("hasilEkspresi").innerHTML =
+    `Hasil = ${hasil.toFixed(2)}`;
+}
+</script>
+
