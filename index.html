@@ -31,9 +31,15 @@
   background: rgba(255, 255, 255, 0.3); /* putih transparan 30% */
   padding: 20px 40px;
   border-radius: 20px;
-  display: inline-block; /* biar lebarnya cuma sekitar isi */
-  backdrop-filter: blur(8px); /* bikin blur background di belakang */
-  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  display: inline-block;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px 5px rgba(108, 92, 231, 0.4); /* glow ungu lembut */
+  transition: box-shadow 0.3s ease;
+}
+
+.header-container:hover {
+  box-shadow: 0 0 25px 10px rgba(108, 92, 231, 0.7); /* lebih terang saat hover */
 }
 
 *{
@@ -55,6 +61,7 @@ body{
   width:90px;
   margin-bottom:12px;
 }
+
 .header h1{
   margin:0;
   color:#2c3e50;
@@ -71,6 +78,15 @@ body{
 }
 
 /* ===== NAVBAR ===== */
+.header {
+  padding: 40px 20px 30px; /* kurangin jarak bawah */
+}
+
+.nav {
+  margin-top: 2px; /* kurangin jarak atas */
+}
+
+
 .navbar-container {
   display: flex;
   justify-content: center;
@@ -636,9 +652,9 @@ input:focus {
 <div class="header">
   <div class="header-container">
     <img src="logosmkmu.html" alt="Logo Sekolah">
-    <h1>SMK MUHAMMADIYAH LOA JANAN</h1>
+    <h2>SMK MUHAMMADIYAH LOA JANAN</h2>
     <h2>Matematika</h2>
-    <h2>Sistem Persamaan Linear Tiga Variabel</h2>
+     <h1>Sistem Persamaan Linear Tiga Variabel</h1>
     
   </div>
 </div>
@@ -994,11 +1010,11 @@ const bankSoal = {
   ],
 
   sulit: [
-    { soal:"x=2,y=-1,z=3. Hitung 2x-y+z", opsi:[7,8,9,10], jawaban:8 },
-    { soal:"x=3,y=2,z=-1. Hitung 3x+y-z", opsi:[10,11,12,13], jawaban:12 },
-    { soal:"x=-1,y=2,z=3. Hitung x+2y+2z", opsi:[7,8,9,10], jawaban:9 },
-    { soal:"x=2,y=1,z=-2. Hitung 4x-y-z", opsi:[7,8,9,10], jawaban:9 },
-    { soal:"x=-2,y=3,z=1. Hitung 2x+3y-z", opsi:[4,5,6,7], jawaban:5 }
+  { soal: "x=2, y=1, z=3. Hitung 2x + y + z", opsi: [7, 8, 9, 10], jawaban: 8 },
+  { soal: "x=3, y=2, z=1. Hitung 3x + y - z", opsi: [10, 11, 12, 13], jawaban: 11 }, // ubah soal supaya minus dihilangin: pakai +
+  { soal: "x=1, y=2, z=3. Hitung x + 2y + 2z", opsi: [7, 8, 9, 10], jawaban: 11 },
+  { soal: "x=2, y=1, z=2. Hitung 4x + y + z", opsi: [7, 8, 9, 10], jawaban: 11 },
+  { soal: "x=2, y=3, z=1. Hitung 2x + 3y + z", opsi: [4, 5, 6, 7], jawaban: 13 }
   ]
 };
 
