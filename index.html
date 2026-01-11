@@ -950,36 +950,62 @@ function hitung() {
   const c3 = +document.getElementById("c3").value;
   const d3 = +document.getElementById("d3").value;
 
-  const D = a1*(b2*c3-b3*c2) - b1*(a2*c3-a3*c2) + c1*(a2*b3-a3*b2);
-  if(D === 0){
+  const D =
+    a1*(b2*c3-b3*c2) -
+    b1*(a2*c3-a3*c2) +
+    c1*(a2*b3-a3*b2);
+
+  if (D === 0) {
     hasil.innerHTML = "Tidak ada solusi unik";
     return;
   }
 
-  const Dx = d1*(b2*c3-b3*c2) - b1*(d2*c3-d3*c2) + c1*(d2*b3-d3*b2);
-  const Dy = a1*(d2*c3-d3*c2) - d1*(a2*c3-a3*c2) + c1*(a2*d3-a3*d2);
-  const Dz = a1*(b2*d3-b3*d2) - b1*(a2*d3-a3*d2) + d1*(a2*b3-a3*b2);
+  const Dx =
+    d1*(b2*c3-b3*c2) -
+    b1*(d2*c3-d3*c2) +
+    c1*(d2*b3-d3*b2);
+
+  const Dy =
+    a1*(d2*c3-d3*c2) -
+    d1*(a2*c3-a3*c2) +
+    c1*(a2*d3-a3*d2);
+
+  const Dz =
+    a1*(b2*d3-b3*d2) -
+    b1*(a2*d3-a3*d2) +
+    d1*(a2*b3-a3*b2);
 
   window.xVal = Dx / D;
   window.yVal = Dy / D;
   window.zVal = Dz / D;
 
   hasil.innerHTML = `
-    x = ${xVal.toFixed(2)}<br>
-    y = ${yVal.toFixed(2)}<br>
-    z = ${zVal.toFixed(2)}
+    x = ${xVal.toLocaleString("id-ID", { maximumFractionDigits: 2 })}<br>
+    y = ${yVal.toLocaleString("id-ID", { maximumFractionDigits: 2 })}<br>
+    z = ${zVal.toLocaleString("id-ID", { maximumFractionDigits: 2 })}
   `;
 }
 
 
-function hitungEkspresi(){
-  if(xVal === undefined){
+function hitungEkspresi() {
+  if (xVal === undefined) {
     hasilEkspresi.innerHTML = "Hitung SPLTV dulu ya";
     return;
   }
-  const h = px.value*xVal + py.value*yVal + pz.value*zVal;
-  hasilEkspresi.innerHTML = `Hasil = ${h.toFixed(2)}`;
+
+  const px = +document.getElementById("px").value;
+  const py = +document.getElementById("py").value;
+  const pz = +document.getElementById("pz").value;
+
+  const h = px*xVal + py*yVal + pz*zVal;
+
+  hasilEkspresi.innerHTML =
+    `Hasil = ${h.toLocaleString("id-ID", { maximumFractionDigits: 2 })}`;
 }
+
+
+    
+
 
 // ================== KUIS ==================
 const scoreBox=document.getElementById("score");
