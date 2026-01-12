@@ -1296,12 +1296,10 @@ function duelJawab(pilihan) {
 }
 </script>
 <script type="module">
-  // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getFirestore, collection, addDoc } 
+    from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyDZj_MTORB2ZjSD2XZmphn_mjMq9YP3EeA",
     authDomain: "spltv-9a5a6.firebaseapp.com",
@@ -1311,8 +1309,26 @@ function duelJawab(pilihan) {
     appId: "1:455167860894:web:999d4f34a47f365ca69b8f"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ===== SIMPAN VISITOR =====
+  async function simpanVisitor(){
+    try{
+      await addDoc(collection(db,"visitors"),{
+        waktu: new Date(),
+        page: "SPLTV",
+        device: navigator.userAgent
+      });
+      console.log("Visitor tersimpan");
+    }catch(e){
+      console.error("Firestore error:", e);
+    }
+  }
+
+  simpanVisitor();
+
+  // 🔽 TARUH SEMUA JS LAMA KAMU DI BAWAH SINI 🔽
 </script>
 </body>
 </html>
