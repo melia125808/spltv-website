@@ -883,6 +883,8 @@ Dengan demikian, solusi SPLTV diperoleh menggunakan
 </div>
 
 <script>
+   
+   
     document.querySelectorAll('.subbox').forEach(el => {
   el.addEventListener('click', () => {
     // hapus semua active dulu biar cuma satu yang nyala
@@ -1293,3 +1295,24 @@ function duelJawab(pilihan) {
   }, 1000);
 }
 </script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDZj_MTORB2ZjSD2XZmphn_mjMq9YP3EeA",
+    authDomain: "spltv-9a5a6.firebaseapp.com",
+    projectId: "spltv-9a5a6",
+    storageBucket: "spltv-9a5a6.firebasestorage.app",
+    messagingSenderId: "455167860894",
+    appId: "1:455167860894:web:999d4f34a47f365ca69b8f"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+</body>
+</html>
