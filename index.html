@@ -1296,15 +1296,15 @@ function duelJawab(pilihan) {
 }
 </script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } 
-    from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc }
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDZj_MTORB2ZjSD2XZmphn_mjMq9YP3EeA",
     authDomain: "spltv-9a5a6.firebaseapp.com",
     projectId: "spltv-9a5a6",
-    storageBucket: "spltv-9a5a6.firebasestorage.app",
+    storageBucket: "spltv-9a5a6.appspot.com",
     messagingSenderId: "455167860894",
     appId: "1:455167860894:web:999d4f34a47f365ca69b8f"
   };
@@ -1312,23 +1312,13 @@ function duelJawab(pilihan) {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // ===== SIMPAN VISITOR =====
-  async function simpanVisitor(){
-    try{
-      await addDoc(collection(db,"visitors"),{
-        waktu: new Date(),
-        page: "SPLTV",
-        device: navigator.userAgent
-      });
-      console.log("Visitor tersimpan");
-    }catch(e){
-      console.error("Firestore error:", e);
-    }
-  }
+  await addDoc(collection(db,"visitors"),{
+    waktu: new Date(),
+    page: "SPLTV",
+    device: navigator.userAgent
+  });
 
-  simpanVisitor();
-
-  // 🔽 TARUH SEMUA JS LAMA KAMU DI BAWAH SINI 🔽
+  console.log("🔥 VISITOR MASUK");
 </script>
 </body>
 </html>
