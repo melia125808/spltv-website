@@ -1039,10 +1039,10 @@ const bankSoal = {
 
   sulit: [
   { soal: "x=2, y=1, z=3. Hitung 2x + y + z", opsi: [7, 8, 9, 10], jawaban: 8 },
-  { soal: "x=3, y=2, z=1. Hitung 3x + y - z", opsi: [10, 11, 12, 13], jawaban: 11 }, // ubah soal supaya minus dihilangin: pakai +
-  { soal: "x=1, y=2, z=3. Hitung x + 2y + 2z", opsi: [7, 8, 9, 10], jawaban: 11 },
-  { soal: "x=2, y=1, z=2. Hitung 4x + y + z", opsi: [7, 8, 9, 10], jawaban: 11 },
-  { soal: "x=2, y=3, z=1. Hitung 2x + 3y + z", opsi: [4, 5, 6, 7], jawaban: 13 }
+  { soal: "x=3, y=2, z=1. Hitung 3x + y - z", opsi: [10, 11, 12, 13], jawaban: 10 }, // ubah soal supaya minus dihilangin: pakai +
+  { soal: "x=1, y=2, z=3. Hitung x + 2y + 2z", opsi: [7, 8, 11, 10], jawaban: 11 },
+  { soal: "x=2, y=1, z=2. Hitung 4x + y + z", opsi: [7, 11, 9, 10], jawaban: 11 },
+  { soal: "x=2, y=3, z=1. Hitung 2x + 3y - z", opsi: [12, 5, 6, 14], jawaban: 12 }
   ]
 };
 
@@ -1294,44 +1294,6 @@ function duelJawab(pilihan) {
     duelSoalBaru();
   }, 1000);
 }
-</script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDZj_MTORB2ZjSD2XZmphn_mjMq9YP3EeA",
-    authDomain: "spltv-9a5a6.firebaseapp.com",
-    projectId: "spltv-9a5a6",
-    storageBucket: "spltv-9a5a6.appspot.com",
-    messagingSenderId: "455167860894",
-    appId: "1:455167860894:web:999d4f34a47f365ca69b8f"
-  };
-
-  // INIT
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // ⬇️ INI YANG PENTING (async langsung jalan)
-  (async () => {
-    try {
-      await addDoc(collection(db, "visitors"), {
-        waktu: serverTimestamp(),
-        halaman: "SPLTV Interaktif",
-        userAgent: navigator.userAgent,
-        layar: `${screen.width}x${screen.height}`,
-        referrer: document.referrer || "direct"
-      });
-      console.log("🔥 VISITOR MASUK KE FIRESTORE");
-    } catch (err) {
-      console.error("❌ GAGAL SIMPAN VISITOR", err);
-    }
-  })();
 </script>
 
 </body>
